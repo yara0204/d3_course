@@ -1,1 +1,11 @@
 books/
+d3/
+
+*.mp4
+
+*.pdf
+
+**/d3.js
+
+*.csv
+

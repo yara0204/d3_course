@@ -1,0 +1,40 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div id="container"></div>
+</body>
+<script src="d3.js"></script>
+<script>
+    let container = d3.select("#container")
+    d3.csv("data.csv").then(showData)
+
+    function write(text) {
+        container.append("div").text(text)
+    }
+
+    function showData(clients) {
+        for (let client of clients) {
+            write(client.Name 
+            + ", " + client.Weight)
+        }
+
+        write("-------------")
+        let weightSum = 0
+        write("Sum: " + weightSum)
+
+        let weightMean = 0
+        write("Mean: " + weightMean)
+
+        let extent = [0,0]
+        write("Extent: " + extent)
+
+    }
+
+
+</script>
+
+</html>
