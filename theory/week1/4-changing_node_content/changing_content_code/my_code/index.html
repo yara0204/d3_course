@@ -1,0 +1,57 @@
+<html>
+
+<head></head>
+
+<body>
+    <p class="main-paragraph">This is an <b>example</b></p>
+    <p>And this is the second paragraph</p>
+    <p> Numero de clicks en esta pagina
+        <div id = "counted_clicks">0</div>
+    </p>
+    <button onclick="change1()">Change First Paragraph</button>
+    <button onclick="change2()">Change all paragraphs</button>
+    <button onclick="change3()">Change with HTML</button>
+    <button onclick="change4()">Change with text</button>
+</body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+    function aumente_click(){
+        let clicks_actuales_sel = d3.select("#counted_clicks");
+        // console.log(clicks_actuales_sel.text());
+        let clicks_actuales = 1 + parseInt(clicks_actuales_sel.text());
+        clicks_actuales_sel.text(clicks_actuales);
+    }
+    function change1() {
+        let main_p = d3.select("p");
+        main_p.html("<b>lo cambie todo</b>")
+        /*console.log(main_p);
+        console.log(main_p.node());
+        console.log(main_p.text());
+        console.log(main_p.html());
+        console.log(main_p.text());
+        console.log(main_p.html());*/
+        aumente_click()
+
+    }
+
+    function change2() {
+        let main_p = d3.selectAll("p");
+        main_p.html("<b>lo cambie todo</b>")
+        /*console.log(main_p);
+        console.log(main_p.node());
+        console.log(main_p.text());
+        console.log(main_p.html());
+        console.log(main_p.text());
+        console.log(main_p.html());*/
+        aumente_click()
+    }
+
+    function change3() {
+        
+    }
+    function change4() {
+        
+    }
+</script>
+
+</html>
