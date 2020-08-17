@@ -2,11 +2,18 @@
 
 <head>
     <style>
-      
+        svg {
+            border: 1px solid black;
+        }
+
+        .line {
+            fill: none;
+            stroke: blue;
+        }
     </style>
 </head>
 <body>
-    <svg id="container" height="300" width="500">
+    <svg id="container" height="300" width="500", stroke= #646464;>
         <g id="body" transform="translate(50,50)"></g>
         <g id="xAxis"></g>
         <g id="yAxis"></g>
@@ -42,6 +49,15 @@
             .attr("transform", "translate(0," + bodyHeight + ")")
             .call(d3.axisBottom(xScale)
                 .tickFormat(d3.timeFormat("%b")))
+        let valueLine = d3.line()
+            .x(d => xScale(d.date))
+            .y(d => yScale(d.price))
+            .defined(d => !!d.price)
+        //console.log(!10)
+        body.append("path")
+            .datum(data)
+            .attr("d", valueLine)
+            .attr("class", "line")
 
     }
 
