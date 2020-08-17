@@ -31,6 +31,20 @@
         let colorScale = d3.scaleOrdinal()
             .range(d3.schemeCategory10)
             .domain(data.map(d => d.country))
+
+        let arc = d3.arc()
+            .innerRadius(bodyHeight/4)
+            .outerRadius(bodyHeight/2)
+
+        let g = body.selectAll(".arc")
+            .data(pie(data))
+            .enter()
+            .append("g")
+        g.append("path")
+            .attr("d", arc)
+            .attr("fill", d => {
+                return colorScale(d.data.country)
+            })
        
     }
 
