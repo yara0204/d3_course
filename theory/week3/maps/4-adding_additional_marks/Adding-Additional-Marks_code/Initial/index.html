@@ -43,8 +43,18 @@
         body.selectAll("path").data(mapInfo.features)
             .enter().append("path")
             .attr("d", d => path(d))
-            .attr("stroke", "black")
-            .attr("fill", "white")
+            .attr("stroke", "#999")
+            .attr("fill", "#eee")
+
+        body.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("r", 2)
+            .attr("fill", "#0055AA")
+            .style("opacity", 0.5)
+            .attr("cx", d => projection([+d.Longitude, +d.Latitude])[0])
+            .attr("cy", d => projection([+d.Longitude, +d.Latitude])[1])
 
 
     }

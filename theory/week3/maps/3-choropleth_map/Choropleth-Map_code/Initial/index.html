@@ -28,7 +28,25 @@
         let mapInfo = datasources[1]
         let data = datasources[0]
         console.log(data)
-        
+
+        let dataIndex={}
+        for(let c of data){
+            let country  = c.Country;
+            dataIndex[country] = +c.Magnitude
+        }
+        mapInfo.features = mapInfo.features.map(d =>{
+            let country = d.properties.name;
+            let magnitude = dataIndex[country]
+            d.properties.Magnitude = magnitude;
+            return d;
+        })
+        let maxEarthquake = d3.max(mapInfo.features, d => d.properties.Magnitude)
+        let medianEarthquake = d3.median(mapInfo.features, d => d.properties.Magnitude)
+
+        let cScale = d3.scaleLinear()
+            .domain([0, medianEarthquake, maxEarthquake])
+            .range(["#006B3C", "white", "#B3001B"])
+
         let bodyHeight = 400
         let bodyWidth = 400
 
@@ -46,7 +64,7 @@
             .attr("d", d => path(d))
             .attr("stroke", "black")
             .attr("fill", 
-                "white")
+                d => d.properties.Magnitude? cScale(d.properties.Magnitude):"white")
 
 
     }
